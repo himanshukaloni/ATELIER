@@ -1,4 +1,4 @@
-const API_URL = import.meta.env.VITE_API_URL || '/api';
+const API = "https://atelier-4r88.onrender.com/api";
 
 async function apiRequest(endpoint, options = {}, token = null) {
     const headers = {
