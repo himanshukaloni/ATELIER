@@ -11,7 +11,14 @@ const adminRoutes = require('./routes/admin');
 
 const app = express();
 
-app.use(cors());
+// CORS
+app.use(
+    cors({
+        origin: process.env.CLIENT_URL || 'http://localhost:5173',
+        credentials: true
+    })
+);
+
 app.use(express.json());
 
 connectDB();
@@ -28,6 +35,7 @@ app.get('/api/health', (req, res) => {
 // Global error handler
 app.use((err, req, res, next) => {
     console.error(err.stack);
+
     res.status(500).json({
         error: 'Something went wrong!',
         details: err.message
